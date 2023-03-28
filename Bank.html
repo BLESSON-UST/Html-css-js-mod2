@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+    <title>UST BANK</title>
+    <style>
+      body{
+        background-image: url("b.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      nav {
+        background-color: #020000;
+        padding: 20px;
+        text-align: center;
+      }
+      nav a {
+        color: #ff0000;
+        text-decoration: underline;
+        padding: 10px;
+      }
+      nav a:hover {
+        background-color: #ddd;
+      }
+
+      footer {
+        text-align: center;
+  padding: 3px;
+  /* background-color: MediumSeaGreen; */
+  color: rgb(0, 0, 0);
+           
+        }   
+
+    </style>
+</head>
+<body >
+  <nav>
+    <a href=/html/Home.html>HOME</a> |
+    <a href="/html/About.html">ABOUT</a>|
+    <a href="#f">LOCATION</a> |
+    
+  </nav>
+    <h1>UST BANK .......</h1>
+
+    <p>The current date is:</p>
+    <p id="current-date"></p>
+
+    <script>
+      var currentDate = new Date();
+      document.getElementById("current-date").innerHTML = currentDate;
+    </script>
+
+
+    <form align ="center">
+        <label for="name">Name</label><br>
+        <input type="text" id="name" name="name"><br>
+       
+        <label for="aadhar">Aadhar Number</label><br>
+        <input type="text" id="aadhar" name="aadhar" pattern="[0-9]{12}" maxlength="12" required><br>
+
+        <label for="pan"> PAN Number</label><br>
+        <input type="text" id="pan" name="pan"  pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" maxlength="10" required><br>
+
+        <label for="branch">Branch Name</label><br>
+        <input type="text" id="branch" name="branch"><br>
+
+        <label for="principal">Principal amount</label><br>
+        <input type="number" id="principal" name="principal" required><br>
+        
+        <label for="rate">Rate of interest</label><br>
+        <input type="number" id="rate" name="rate" required><br>
+        
+        <label for="time">Time in years</label><br>
+        <input type="number" id="time" name="time" required><br>
+        
+        <input type="button" value="Calculate" onclick="calculateSI()">
+        
+        <br>
+        
+        <label for="result">Simple interest:</label><br>
+        <input type="text" id="result" name="result" readonly>
+      </form><br><br>
+      
+      <script>
+        function calculateSI() {
+          
+          const principal = document.getElementById("principal").value;
+          const rate = document.getElementById("rate").value;
+          const time = document.getElementById("time").value;
+          
+          //validation
+          var panInput = document.getElementById("pan").value;
+          var aadhar = document.getElementById("aadhar").value;
+          var aadhaarRegex = /^\d{12}$/;
+          var name = document.getElementById("name").value;
+          var panRegex = /[A-Z]{5}[0-9]{4}[A-Z]{1}/;
+          if (!panRegex.test(panInput.value)) {
+              alert("Invalid PAN number. Please enter a valid PAN number.");
+              panInput.focus();
+            }
+        if (!aadhaarRegex.test(aadhar)) {
+              alert("Invalid Aadhaar number. Please enter a 12-digit number.");
+               return false;
+            }
+          
+          const si = (principal * rate * time) / 100;
+          
+          
+          document.getElementById("result").value = si;
+        }
+      </script>
+
+<footer id="f" style="background-color: transparent;">
+       
+  <p>Adress <br> Trivandrum <br> UST Campus, Technopark <br> Phase 2, Kulathur, Trivandrum - <br> 695 583 <br>
+      Phone +91 471 404 0000</p>
+  
+  
+</footer>
+
+
+
+</body>

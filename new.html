@@ -1,0 +1,38 @@
+<head>
+    <title>sample</title>
+</head>
+<body>
+    <form>
+        <label for="principal">Principal amount:</label>
+        <input type="number" id="principal" name="principal" required><br><br>
+        
+        <label for="rate">Rate of interest:</label>
+        <input type="number" id="rate" name="rate" required><br><br>
+        
+        <label for="time">Time in years:</label>
+        <input type="number" id="time" name="time" required><br><br>
+        
+        <input type="button" value="Calculate" onclick="calculateSI()">
+        
+        <br><br>
+        
+        <label for="result">Simple interest:</label>
+        <input type="text" id="result" name="result" readonly>
+      </form>
+      
+      <script>
+        function calculateSI() {
+          // Get input values
+          const principal = document.getElementById("principal").value;
+          const rate = document.getElementById("rate").value;
+          const time = document.getElementById("time").value;
+          
+          // Calculate simple interest
+          const si = (principal * rate * time) / 100;
+          
+          // Display result
+          document.getElementById("result").value = si;
+        }
+      </script>
+      
+</body>

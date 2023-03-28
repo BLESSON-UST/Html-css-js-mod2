@@ -1,0 +1,313 @@
+function isPrime(num) {
+  
+  if (num < 2 || num % 2 == 0) {
+    return false;
+  }
+
+  
+  for (let i = 3; i <= Math.sqrt(num); i += 2) {
+    if (num % i == 0) {
+      return false;
+    }
+  }
+
+ 
+  return true;
+}
+
+function findPrimes(numbers) {
+ 
+  return numbers.filter((num) => isPrime(num));
+}
+
+
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let primes = findPrimes(numbers);
+console.log("Prime numbers: " + primes);
+
+------------------------------------------------------------------------------
+
+function isAnagram(str1,str2)
+{
+    str1=str1.toLowerCase();
+    str2=str2.toLowerCase();
+ 
+    if(str1.length!==str2.length)
+    {
+       return false;
+    }
+    return str1.split("").sort().join("")===str2.split("").sort().join("");
+}
+
+let str1="Hello";
+let str2="asdfg";
+if(isAnagram(str1,str2))
+{
+    console.log("Anagrams")
+}
+else
+{
+    console.log("Not Anagrams");
+}
+
+----------------------------------------------------------------------------------------
+
+const number = parseInt(prompt('Enter the number of terms: '));
+let n1 = 0, n2 = 1, nextTerm;
+
+console.log('Fibonacci Series:');
+
+for (let i = 1; i <= number; i++) {
+    console.log(n1);
+    nextTerm = n1 + n2;
+    n1 = n2;
+    n2 = nextTerm;
+}
+
+------------------------------------------------------------------------------------------
+
+Inheritence Concepts in Javascript
+
+class Person {
+  constructor(name, age, gender) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+  }
+
+  introduce() {
+    console.log(`Hi, my name is ${this.name}, I am ${this.age} years old, and I identify as ${this.gender}.`);
+  }
+}
+
+class Student extends Person {
+  constructor(name, age, gender, grade) {
+    super(name, age, gender);
+    this.grade = grade;
+  }
+
+  study() {
+    console.log(`${this.name} is studying hard to get good grades.`);
+  }
+}
+
+class Employee extends Person {
+  constructor(name, age, gender, jobTitle) {
+    super(name, age, gender);
+    this.jobTitle = jobTitle;
+  }
+
+  work() {
+    console.log(`${this.name} is working hard as a ${this.jobTitle}.`);
+  }
+}
+
+class Father extends Person {
+  constructor(name, age, gender, children) {
+    super(name, age, gender);
+    this.children = children;
+  }
+
+  parent() {
+    console.log(`${this.name} is the proud father of ${this.children}.`);
+  }
+}
+
+---------------------------------------------------------------------------------------------------------
+
+SOLUTION:
+ReducedInterestEstimate.html
+<html lang="en">
+<head>
+    <title>Reducing Interest Loan Estimation</title>
+    <style type="text/css">
+        h2 {
+            text-align: center;
+            color: #FF0000;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        table {
+            text-align: left;
+            background-color: #FFE77A;
+            padding: 10px;
+        }
+
+        thead {
+            text-align: center;
+        }
+
+        #tablemain {
+            margin-left: 35%;
+        }
+
+        #Estimate {
+            background-color: #F1F334;
+            color: #000000;
+            font-size: 15px;
+            height: 35px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<h2>Reducing Interest Loan Estimation</h2>
+<table id="tablemain">
+    <tbody>
+    <tr>
+        <td>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <label for="principalAmount">Principal Loan Amount (Rs.)</label>
+                    </td>
+                    <td>
+                        <input type="text" id="principalAmount" placeholder="Principal Amount" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="interestRate">Interst Rate (%)</label>
+                    </td>
+                    <td>
+                        <input type="text" id="interestRate" placeholder="Interest Per Annum" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="tenure">Tenure (in months)</label>
+                    </td>
+                    <td>
+                        <input type="text" id="tenure" placeholder="Tenure in Months" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td align="left" style="padding: 10px">
+                        <input id="Estimate" type="button" value="Estimate" onclick="EstimateReducingInterestLoan()">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table border="1">
+                <caption><b>Loan Estimation</b></caption>
+                <thead>
+                <tr>
+                    <th>Details</th>
+                    <th>Reducing Interest Loan</th>
+                    <th>Fixed Interest Loan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Total Interest Rs.</td>
+                    <td>
+                        <output id="tInterest"></output>
+                    </td>
+                    <td>
+                        <output id="tInterestFixed"></output>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Total Payment Rs.</td>
+                    <td>
+                        <output id="tPayment"></output>
+                    </td>
+                    <td>
+                        <output id="tPaymentFixed"></output>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Monthly EMI Rs.</td>
+                    <td>
+                        <output id="EMI"></output>
+                    </td>
+                    <td>
+                        <output id="EMIFixed"></output>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="Estimation.js"></script>
+</body>
+</html>
+
+Estimation.js
+const _principalAmount = document.getElementById("principalAmount");
+const _interestRateYear = document.getElementById("interestRate");
+const _tenureMonth = document.getElementById("tenure");
+
+function getEmiReducing(P, N, R) {
+    return (P * R * (Math.pow((1 + R), N) / (Math.pow((1 + R), N) - 1)));
+}
+
+function EstimateReducingInterestLoan() {
+    calculateEMI();
+    totalPayment();
+    totalInterest();
+    EstimateFixedInterestLoan();
+}
+
+function EstimateFixedInterestLoan() {
+    const principalAmount = Number(_principalAmount.value);
+    const interestRateYear = Number(_interestRateYear.value);
+    const tenureMonth = Number(_tenureMonth.value);
+
+    const totalInterestFixed = principalAmount * interestRateYear * tenureMonth / 1200;
+    const totalPaymentFixed = principalAmount + totalInterestFixed;
+    const emiFixed = totalPaymentFixed / tenureMonth;
+
+    document.getElementById("tInterestFixed").innerHTML = Number(totalInterestFixed).toFixed(2).toString();
+    document.getElementById("tPaymentFixed").innerHTML = Number(totalPaymentFixed).toFixed(2).toString();
+    document.getElementById("EMIFixed").innerHTML = Number(emiFixed).toFixed(2).toString();
+}
+
+function reducingLoan() {
+    const principalAmount = Number(_principalAmount.value);
+    const interestRateYear = Number(_interestRateYear.value);
+    const interestRateMonth = Number(interestRateYear / 1200);
+    const tenureMonth = Number(_tenureMonth.value);
+
+    const emiReducing = getEmiReducing(principalAmount, tenureMonth, interestRateMonth);
+    const totalPaymentReducing = tenureMonth * emiReducing;
+    const totalInterestReducing = totalPaymentReducing - principalAmount;
+
+    return {
+        emiReducing: emiReducing,
+        totalPaymentReducing: totalPaymentReducing,
+        totalInterestReducing: totalInterestReducing
+    };
+}
+
+function calculateEMI() {
+    const emiReducing = reducingLoan().emiReducing;
+    document.getElementById("EMI").innerHTML = Number(emiReducing).toFixed(2).toString();
+}
+
+function totalPayment() {
+    const totalPaymentReducing = reducingLoan().totalPaymentReducing;
+    document.getElementById("tPayment").innerHTML = Number(totalPaymentReducing).toFixed(2).toString();
+}
+
+function totalInterest() {
+    const totalInterestReducing = reducingLoan().totalInterestReducing;
+    document.getElementById("tInterest").innerText = Number(totalInterestReducing).toFixed(2).toString();
+}
+
+
+
+
+   
+   
+}

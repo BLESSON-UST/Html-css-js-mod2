@@ -1,0 +1,86 @@
+/* form styling */
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  input,
+  select,
+  textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border: 1px solid #555;
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  
+  /* error message styling */
+  
+  .error {
+    color: red;
+    margin-top: 5px;
+  }
+  
+  /* success message styling */
+  
+  .success {
+    color: green;
+    margin-top: 5px;
+  }
+  
+  /* password strength meter styling */
+  
+  #password-strength-meter {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  #password-strength-meter > div {
+    height: 10px;
+    margin-right: 5px;
+    background-color: #DDD;
+  }
+  
+  #password-strength-meter .weak {
+    background-color: #F44336;
+  }
+  
+  #password-strength-meter .medium {
+    background-color: #FFC107;
+  }
+  
+  #password-strength-meter .strong {
+    background-color: #4CAF50;
+  }
+  
+  #password-strength-meter .very-strong {
+    background-color: #2196F3;
+  }
+  

@@ -1,0 +1,264 @@
+1.roman to decimal
+
+function romanToNumber(roman) {
+  const romanNumerals = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
+  };
+  
+  let result = 0;
+  
+  for (let i = 0; i < roman.length; i++) {
+    const current = romanNumerals[roman[i]];
+    const next = romanNumerals[roman[i + 1]];
+    
+    if (next && next > current) {
+      result += next - current;
+      i++;
+    } else {
+      result += current;
+    }
+  }
+  
+  return result;
+}
+
+2. pair of target
+
+function findPairs(array, target) {
+  for(let i=0;i<array.length;i++) {
+    for(let j=i+1;j<array.length;j++) {
+      if(array[i]+array[j]==target) {
+        console.log(array[i],array[j]);
+      }   
+    }
+  }
+}
+
+const array = [1,2,3,4,5,6,7,8];
+const target = 9;
+findPairs(array, target);
+
+
+3.String reversal with validation
+function reverseString(str) {
+  
+  const isEnglish = /^[A-Za-z0-9]*$/.test(str);
+  if (!isEnglish) {
+    throw new Error('Input string is not in English');
+  }
+  
+  
+  let reversed = '';
+  for (let i = str.length - 1; i >= 0; i--) {
+    reversed += str.charAt(i);
+  }
+  
+  return reversed;
+}
+
+
+const inputString = 'Hello';
+const reversedString = reverseString(inputString);
+console.log(reversedString);  // Output: olleH
+
+const inputString2 = 'മലയാളം';
+try {
+  const reversedString2 = reverseString(inputString2);
+  console.log(reversedString2);
+} catch (error) {
+  console.error(error.message);  
+}
+
+4.proper form validation
+
+user.html
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Data Form</title>
+  <link rel="stylesheet" type="text/css" href="styling.css">
+
+</head>
+<body>
+  <form id="userDataForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+    title="Password must be at least 8 characters long and contain at least one letter and one number." required><br>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="submissionMessage"></div>
+
+  <script>
+    const form = document.getElementById('userDataForm');
+    const submissionMessage = document.getElementById('submissionMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      let isValid = true;
+
+      const nameInput = form.querySelector('#name');
+      const emailInput = form.querySelector('#email');
+      const passwordInput = form.querySelector('#password');
+      const confirmPasswordInput = form.querySelector('#confirmPassword');
+
+      const name = nameInput.value;
+      const email = emailInput.value;
+      const password = passwordInput.value;
+      const confirmPassword = confirmPasswordInput.value;
+
+      // Validate name input
+      if (name.trim() === '') {
+        nameInput.setCustomValidity('Name is required');
+        isValid = false;
+      } else {
+        nameInput.setCustomValidity('');
+      }
+
+      // Validate email input
+      if (email.trim() === '') {
+        emailInput.setCustomValidity('Email is required');
+        isValid = false;
+      } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+        emailInput.setCustomValidity('Invalid email format');
+        isValid = false;
+      } else {
+        emailInput.setCustomValidity('');
+      }
+
+      // Validate password input
+      if (password.trim() === '') {
+        passwordInput.setCustomValidity('Password is required');
+        isValid = false;
+      } else if (password !== confirmPassword) {
+        confirmPasswordInput.setCustomValidity('Passwords do not match');
+        isValid = false;
+      } else {
+        confirmPasswordInput.setCustomValidity('');
+        if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+          passwordInput.setCustomValidity('Password must be at least 8 characters long and contain at least one letter and one number.');
+          isValid = false;
+        } else {
+          passwordInput.setCustomValidity('');
+        }
+      }
+
+      // Submit form if all inputs are valid
+      if (isValid) {
+        submissionMessage.textContent = 'Submitting...';
+        setTimeout(function() {
+          submissionMessage.textContent = 'Submitted!';
+          form.reset();
+        }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>
+
+styling.css
+
+/* form styling */
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  input,
+  select,
+  textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border: 1px solid #555;
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  
+  /* error message styling */
+  
+  .error {
+    color: red;
+    margin-top: 5px;
+  }
+  
+  /* success message styling */
+  
+  .success {
+    color: green;
+    margin-top: 5px;
+  }
+  
+  /* password strength meter styling */
+  
+  #password-strength-meter {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  #password-strength-meter > div {
+    height: 10px;
+    margin-right: 5px;
+    background-color: #DDD;
+  }
+  
+  #password-strength-meter .weak {
+    background-color: #F44336;
+  }
+  
+  #password-strength-meter .medium {
+    background-color: #FFC107;
+  }
+  
+  #password-strength-meter .strong {
+    background-color: #4CAF50;
+  }
+  
+  #password-strength-meter .very-strong {
+    background-color: #2196F3;
+  }
+  

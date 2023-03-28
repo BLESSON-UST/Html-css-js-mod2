@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Form</title>
+</head>
+<body>
+  <form id="employeeForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="employeeId">Employee ID:</label>
+    <input type="text" id="employeeId" name="employeeId" pattern="[A-Za-z0-9]{6}" required><br>
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" required></textarea><br>
+
+    <label for="bloodGroup">Blood Group:</label>
+    <select id="bloodGroup" name="bloodGroup" required>
+      <option value="">--Please select--</option>
+      <option value="A+">A+</option>
+      <option value="A-">A-</option>
+      <option value="B+">B+</option>
+      <option value="B-">B-</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB-</option>
+      <option value="O+">O+</option>
+      <option value="O-">O-</option>
+    </select><br>
+
+    <label for="experience">Experience:</label>
+    <input type="number" id="experience" name="experience" min="0" max="50" required><br>
+
+    <label for="skill">Skill:</label>
+    <input type="text" id="skill" name="skill" required><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="dataContainer"></div>
+
+  <script src="employee.js">
+    const form = document.getElementById('employeeForm');
+    const dataContainer = document.getElementById('dataContainer');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      let isValid = true;
+
+      const nameInput = form.querySelector('#name');
+      const employeeIdInput = form.querySelector('#employeeId');
+      const locationInput = form.querySelector('#location');
+      const addressInput = form.querySelector('#address');
+      const bloodGroupInput = form.querySelector('#bloodGroup');
+      const experienceInput = form.querySelector('#experience');
+      const skillInput = form.querySelector('#skill');
+
+      const data = {
+        name: nameInput.value,
+        employeeId: employeeIdInput.value,
+        location: locationInput.value,
+        address: addressInput.value,
+        bloodGroup: bloodGroupInput.value,
+        experience: experienceInput.value,
+        skill: skillInput.value
+      };
+
+      const dataString = JSON.stringify(data);
+
+      if (isValid) {
+        fetch('submit-employee-data.php', {
+          method: 'POST',
+          body: dataString,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => response.text())
+        .then(text => {
+          dataContainer.innerHTML = text;
+        })
+        .catch(error => console.error(error));
+      }
+    });
+  </script>
+  <div id="displayData"></div>
+</body>
+</html>
